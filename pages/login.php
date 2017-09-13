@@ -1,3 +1,10 @@
+<?php  
+    include("mod/connect.php");
+    session_start();
+    if(isset($_SESSION['username'])){
+        header("Location:index.php?msg=already logged in");
+    }else{
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,4 +84,6 @@
 </body>
 
 </html>
+
+<?php }?>
 
