@@ -33,6 +33,7 @@
 
     <!-- Custom CSS -->
     <link href="/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/dist/css/custom.css">
 
     <!-- Custom Fonts -->
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -181,6 +182,43 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
+                <div class="col-lg-12">
+                    <button id="newtrans">New Transaction</button>
+                    
+                    <div id="formtrans" class="modal">
+                        
+                        <form action="" method="POST" role="form">
+                            <span class="close">&times;</span>
+                            <div class="form-group">
+                                <label>ID Barang</label>
+                                <input class="form-control" placeholder="ID Barang" name="idbarang" type="number">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input class="form-control" placeholder="Quantity" name="qty" type="number">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Harga</label>
+                                <input class="form-control" placeholder="Harga" name="harga" type="number">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Selects</label>
+                                <select class="form-control" name="status">
+                                    <option disabled selected> Status</option>
+                                    <option value="Penjualan">Penjualan</option>
+                                    <option value="Restock">Restock</option>
+                                    <option value="Retur">Retur</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
     </div>
@@ -202,6 +240,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
+    <script src="/dist/js/modal.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
