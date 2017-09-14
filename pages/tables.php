@@ -321,6 +321,7 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
+                                         <th>ID Barang</th>
                                         <th>Nama Barang</th>
                                         <th>Type</th>
                                         <th>Merek</th>
@@ -341,6 +342,7 @@
                                         ?>
 
                                         <tr class="odd gradeX">
+                                        <td><?php echo $row[0] ?></td>
                                          <td><?php echo $row[1] ?></td>
                                          <td><?php echo $row[2] ?></td> 
                                          <td><?php echo $row[3] ?></td> 
