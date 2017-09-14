@@ -11,7 +11,7 @@ $result1 = executeQuery("select username,password,role from msuser where usernam
 
 
 if(!mysqli_num_rows($result1)){
-	header("Location:../login.php?msg=Incorrect Username or Password !");
+	header("Location:/pages/login.php?msg=Incorrect Username or Password !");
 }else{
 
 	$row = mysqli_fetch_array($result1);	
@@ -20,7 +20,7 @@ if(!mysqli_num_rows($result1)){
 	$_SESSION['username'] = $row[2];
 	$_SESSION['role'] = $row[3];
 
-	header("Location:../index.php");
+	header("Location:/index.php");
 	
 	}
 

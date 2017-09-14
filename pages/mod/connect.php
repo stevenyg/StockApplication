@@ -7,7 +7,7 @@
 
 function executeQuery($query)
 {
-	 $con = mysqli_connect('Localhost','root','','web');
+	 $con = mysqli_connect('Localhost','root','','stockapplication');
 		$temp = mysqli_query($con,$query);
 			if(!$temp)
 			{

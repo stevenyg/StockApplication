@@ -7,6 +7,8 @@
 	$merek = $_REQUEST['merek'];
 	$partnum = $_REQUEST['partnum'];
 	$satuan = $_REQUEST['satuan'];
+    $hargabeli = $_REQUEST['hargabeli'];
+    $qty= $_REQUEST['qty'];
 	$keterangan = $_REQUEST['keterangan'];
 	$supplier = $_REQUEST['supplier'];
 	$createdat = date('Y-m-d H:i:s');
@@ -14,7 +16,7 @@
 
 	$result1 = executeQuery("insert into msbarang (namabarang,type,merek,partnum,satuan,keterangan,supplier,createdat,createdby) values ('".$namabarang."','".$type."','".$merek."','".$partnum."','".$satuan."','".$keterangan."','".$supplier."','".$createdat."','".$createdby."')");
 
-	header("Location:../tables.php");
+	header("Location:/pages/tables.php");
 
 
  ?>
