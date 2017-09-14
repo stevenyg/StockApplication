@@ -46,14 +46,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Stock Application</a>
+                <a class="navbar-brand" href="index.php">Stock Application</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="/pages/mod/dologout.php"> Logout
+                    <a class="dropdown-toggle"  href="/pages/mod/dologout.php"> Logout
                         <i class="fa fa-sign-out fa-fw"></i>
                     </a>
                     <!-- /.dropdown-user -->
@@ -87,6 +87,9 @@
                         <li>
                             <a href="/pages/inputdata.php"><i class="fa fa-keyboard-o fa-fw"></i> Input Data</a>
                         </li>
+                        <li>
+                            <a href="/pages/logtrans.php"><i class="fa fa-keyboard-o fa-fw"></i> Log Transaction</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -111,7 +114,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form">
+                                    <form action="/pages/mod/doinsertbarang.php" method="POST" role="form">
                                         
                                         <div class="form-group">
                                             <label>Nama Barang</label>

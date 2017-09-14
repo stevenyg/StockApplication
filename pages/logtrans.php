@@ -129,21 +129,21 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                    <th>ID Barang</th>
-                                        <th>Nama Barang</th>
-                                        <th>Type</th>
-                                        <th>Merek</th>
-                                        <th>Part/Number</th>
-                                        <th>Satuan</th>
-                                        <th>Harga Beli</th>
+                                    
+                                        <th>Transaction ID</th>
+                                        <th>ID Barang</th>
                                         <th>Qty</th>
-                                        <th>Supplier</th>
+                                        <th>Harga</th>
+                                        <th>Status</th>
+                                        <th>Created at</th>
+                                        <th>Created by</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                 <?php  
-                                    $result1 = executeQuery("select * from msbarang");
+                                    $result1 = executeQuery("select * from trbarang");
 
                                    
 
@@ -156,10 +156,11 @@
                                          <td><?php echo $row[2] ?></td> 
                                          <td><?php echo $row[3] ?></td> 
                                          <td><?php echo $row[4] ?></td> 
-                                         <td><?php echo $row[5] ?></td> 
+                                         <td><?php echo $row[5] ?></td>
                                          <td><?php echo $row[6] ?></td> 
-                                         <td><?php echo $row[7] ?></td>  
-                                         <td><?php echo $row[8] ?></td>  
+                                        
+                                          
+                                         
                                         
                                     </tr>
                                     <?php
