@@ -146,6 +146,8 @@
                                 <?php  
                                     $result1 = executeQuery("select * from msbarang");
 
+                            
+
                                    
 
                                     while($row = mysqli_fetch_array($result1)){
@@ -187,7 +189,7 @@
                     
                     <div id="formtrans" class="modal">
                         
-                        <form action="" method="POST" role="form">
+                        <form id="form_insert_barang" role="form">
                             <span class="close">&times;</span>
                             <div class="form-group">
                                 <label>ID Barang</label>
@@ -214,7 +216,7 @@
                                 </select>
                             </div>
                             
-                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button id="insertbarang" type="submit" class="btn btn-default">Submit</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         </form>
                     </div>
@@ -247,6 +249,22 @@
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
             responsive: true
+        });
+
+        $('#insertbarang').on('click',function(){
+            var form = $('#form_insert_barang').serializeArray();
+            form.push({name: "key",value:"insertbarang"});
+            $.ajax({
+                url:"/ajax/ajax.php",
+                type:"POST",
+                data:form,
+                success:function(msg){
+                    console.log(msg);
+                },
+                error:function(msg){
+                    console.log(msg);
+                }
+            });
         });
     });
     </script>

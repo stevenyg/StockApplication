@@ -11,7 +11,7 @@ function executeQuery($query)
 		$temp = mysqli_query($con,$query);
 			if(!$temp)
 			{
-				die("Error ".mysqli_error());
+				return false;
 			}
 			else
 			{
