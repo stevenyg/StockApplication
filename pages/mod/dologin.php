@@ -1,13 +1,15 @@
 <?php  
 
 include("connect.php");
+
+
 session_start();
 
 $username =$_REQUEST['username'];
 $password = $_REQUEST['password'];
 $passwordmd5 = md5($password);
 
-$result1 = executeQuery("select username,password,role from msuser where username='$username' and password='$password' ");
+$result1 = executeQuery("select * from msuser where username='$username' and password='$password' ");
 
 
 if(!mysqli_num_rows($result1)){

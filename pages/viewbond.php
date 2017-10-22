@@ -2,8 +2,6 @@
     include("mod/connect.php");
     include("mod/sessioncheck.php");  
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,16 +16,23 @@
     <title>Stock Application</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/dist/css/custom.css">
 
     <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,7 +48,6 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -52,7 +56,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Stock Application</a>
+                <a class="navbar-brand" href="index.html">Stock Application</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -133,6 +137,8 @@
 
                             }
                          ?>
+                                           
+                        
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -143,129 +149,119 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Forms</h1>
+                    <h1 class="page-header">View</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Basic Form Elements
+                            Stock
                         </div>
+                        <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <form action="/pages/mod/doinsertbarang.php" method="POST" role="form">
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Nama Barang</label>
-                                            <input class="form-control" placeholder="Nama Barang" name="namabarang" required autofocus>
-                                        </div>
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Type</label>
-                                            <input class="form-control" placeholder="Type" name="type" required>
-                                        </div>
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Merek</label>
-                                            <input class="form-control" placeholder="Merek" name="merek" required>
-                                        </div>
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Part/Number</label>
-                                            <input class="form-control" placeholder="Part/Number" name="partnum" required>
-                                        </div>
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Satuan</label>
-                                            <input class="form-control" placeholder="Satuan" name="satuan" required>
-                                        </div>
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Harga Beli</label>
-                                            <input class="form-control" placeholder="Harga Beli" type="number" name="hargabeli" required>
-                                        </div>
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Quantity</label>
-                                            <input class="form-control" placeholder="Quantity" type="number" name="qty" required>
-                                        </div>
-                                        
+                            
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                    <th>ID Bond</th>
+                                        <th>Supplier</th>
+                                        <th>Tanggal</th>
+                                        <th>Nomor Nota</th>
+                                        <th>Total</th>
+                                        <th>Sales</th>
+                                        <th>Status</th>
+                                        <th>Keterangan</th>
                                        
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Supplier</label>
-                                            <input class="form-control" placeholder="Supplier" name="supplier" required>
-                                        </div>
+                                    </tr>
+                                </thead>
+                                <tbody id="viewt">
 
-                                         <div class="col-md-12 form-group">
-                                            <label>Keterangan</label>
-                                            <textarea class="form-control" rows="3" placeholder="Keterangan..." name="keterangan"></textarea>
-                                        </div>
-                                        
-                                        <button type="submit" class="btn btn-default">Submit</button>
-                                        <button type="reset" class="btn btn-default">Reset</button>
-                                    </form>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                                
+                                <?php  
+                                    $result1 = executeQuery("select * from msbond");
+                                    
+                                   
 
-                            </div>
-                            <!-- /.row (nested) -->
+                                    while($row = mysqli_fetch_array($result1)){
+                                        ?>
+
+                                        <tr class="odd gradeX">
+                                        <td><?php echo $row[0] ?></td>  
+                                         <td><?php echo $row[1] ?></td>
+                                         <td><?php echo $row[2] ?></td> 
+                                         <td><?php echo $row[3] ?></td> 
+                                         <td><?php echo $row[4] ?></td> 
+                                         <td><?php echo $row[5] ?></td> 
+                                         <td><?php echo $row[6] ?></td>
+                                         <td><?php echo $row[7] ?></td>  
+                                        
+
+                                        
+                                    </tr>
+                                    <?php
+                                    }
+
+                                    ?>
+
+
+                             
+
+                                    
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+                            
                         </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
-                <div class="col-md-6" id="form-login">
-                    <form class="well" action="/pages/mod/importbeli.php" method="post" name="upload_excel" enctype="multipart/form-data">
-                        <fieldset>
-                            <legend>Import CSV/Excel file</legend>
-                            <div class="control-group">
-                                <div class="control-label">
-                                    <label>CSV/Excel File:</label>
-                                </div>
-                                <div class="controls form-group">
-                                    <input type="file" name="file" id="file" class="input-large form-control">
-                                </div>
-                            </div>
-                            
-                            <div class="control-group">
-                                <div class="controls">
-                                <button type="submit" id="submit" name="Import" class="btn btn-success btn-flat btn-lg pull-right button-loading" data-loading-text="Loading...">Upload</button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
                 <!-- /.col-lg-12 -->
+               
+
+                <div class="col-md-3 hidden-phone"></div>
+                
+                <div class="col-md-3 hidden-phone"></div>
             </div>
-            <!-- /.row -->
 
 
-
-        </div>
-        <!-- /#page-wrapper -->
+            </div>
 
     </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="/dist/js/sb-admin-2.js"></script>
+    <script src="/dist/js/modal.js"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+
+    });
+    </script>
+
+
 
 </body>
 
 </html>
-

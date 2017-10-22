@@ -1,6 +1,7 @@
 <?php 
 
 	include("connect.php");
+	include("sessioncheck.php");
 	session_start();
 
 	$namabarang = $_REQUEST['namabarang'];

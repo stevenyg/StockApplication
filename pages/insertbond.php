@@ -3,7 +3,6 @@
     include("mod/sessioncheck.php");  
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -143,7 +142,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Forms</h1>
+                    <h1 class="page-header">Bond Forms</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -152,58 +151,45 @@
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Basic Form Elements
+                            Insert Form Bond
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="/pages/mod/doinsertbarang.php" method="POST" role="form">
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Nama Barang</label>
-                                            <input class="form-control" placeholder="Nama Barang" name="namabarang" required autofocus>
-                                        </div>
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Type</label>
-                                            <input class="form-control" placeholder="Type" name="type" required>
-                                        </div>
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Merek</label>
-                                            <input class="form-control" placeholder="Merek" name="merek" required>
-                                        </div>
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Part/Number</label>
-                                            <input class="form-control" placeholder="Part/Number" name="partnum" required>
-                                        </div>
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Satuan</label>
-                                            <input class="form-control" placeholder="Satuan" name="satuan" required>
-                                        </div>
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Harga Beli</label>
-                                            <input class="form-control" placeholder="Harga Beli" type="number" name="hargabeli" required>
-                                        </div>
-                                        
-                                        <div class="col-md-6 form-group">
-                                            <label>Quantity</label>
-                                            <input class="form-control" placeholder="Quantity" type="number" name="qty" required>
-                                        </div>
-                                        
-                                       
+                                    <form action="/pages/mod/doinsertbond.php" method="POST" role="form">
                                         
                                         <div class="col-md-6 form-group">
                                             <label>Supplier</label>
-                                            <input class="form-control" placeholder="Supplier" name="supplier" required>
+                                            <input class="form-control" placeholder="Supplier" name="supplier" required autofocus>
                                         </div>
-
+                                        
+                                        <div class="col-md-6 form-group">
+                                            <label>Date</label>
+                                            <input class="form-control" type="Date" placeholder="Date" name="date" required>
+                                        </div>
+                                        
+                                        <div class="col-md-6 form-group">
+                                            <label>Nomor Nota</label>
+                                            <input class="form-control" placeholder="Nomor Nota" name="nonota" required>
+                                        </div>
+                                        
+                                        <div class="col-md-6 form-group">
+                                            <label>Total</label>
+                                            <input class="form-control" placeholder="Total" name="total" required>
+                                        </div>
+                                        
+                                        <div class="col-md-6 form-group">
+                                            <label>Sales</label>
+                                            <input class="form-control" placeholder="Sales" name="sales" required>
+                                        </div>
+                                        
+                                        <div class="col-md-6 form-group">
+                                            <label>Status</label>
+                                            <input class="form-control" placeholder="Status" name="status" required>
+                                        </div>
                                          <div class="col-md-12 form-group">
                                             <label>Keterangan</label>
-                                            <textarea class="form-control" rows="3" placeholder="Keterangan..." name="keterangan"></textarea>
+                                            <input class="form-control" placeholder="Keterangan" name="keterangan">
                                         </div>
                                         
                                         <button type="submit" class="btn btn-default">Submit</button>
@@ -218,33 +204,93 @@
                         </div>
                         <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
-                </div>
-                <div class="col-md-6" id="form-login">
-                    <form class="well" action="/pages/mod/importbeli.php" method="post" name="upload_excel" enctype="multipart/form-data">
-                        <fieldset>
-                            <legend>Import CSV/Excel file</legend>
-                            <div class="control-group">
-                                <div class="control-label">
-                                    <label>CSV/Excel File:</label>
-                                </div>
-                                <div class="controls form-group">
-                                    <input type="file" name="file" id="file" class="input-large form-control">
-                                </div>
-                            </div>
-                            
-                            <div class="control-group">
-                                <div class="controls">
-                                <button type="submit" id="submit" name="Import" class="btn btn-success btn-flat btn-lg pull-right button-loading" data-loading-text="Loading...">Upload</button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-                <!-- /.col-lg-12 -->
+
+
+                
             </div>
             <!-- /.row -->
+<div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Retur Form Bond
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form action="/pages/mod/doupdatebond.php" method="POST" role="form">
+                                        
+                                        <div class="col-md-6 form-group">
+                                            <label>ID Bond</label>
+                                            <input class="form-control" placeholder="ID Bond" name="idbond" required autofocus>
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class="col-md-6 form-group">
+                                            <label>Total</label>
+                                            <input class="form-control" placeholder="Total" name="total" required>
+                                        </div>
+                                        <div class="col-md-12 form-group">
+                                            <label>Keterangan</label>
+                                            <input class="form-control" placeholder="Keterangan" name="keterangan" required>
+                                        </div>
 
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                        <button type="reset" class="btn btn-default">Reset</button>
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                
+
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+
+                
+            </div>
+
+            <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Update Form Status Lunas / Belum Lunas 
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form action="/pages/mod/doupdatebondstatus.php" method="POST" role="form">
+                                        
+                                        <div class="col-md-6 form-group">
+                                            <label>ID Bond</label>
+                                            <input class="form-control" placeholder="ID Bond" name="idbond" required autofocus>
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class="col-md-6 form-group">
+                                            <label>Status</label>
+                                            <input class="form-control" placeholder="Status" name="status" required>
+                                        </div>
+                                        
+
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                        <button type="reset" class="btn btn-default">Reset</button>
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                
+
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+
+
+                
+            </div>
 
 
         </div>

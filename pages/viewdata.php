@@ -1,11 +1,7 @@
 <?php  
     include("mod/connect.php");
-    session_start();
-    if(!isset($_SESSION['username'])){
-        header("Location:/login.php?msg=not logged in");
-    }else{
+    include("mod/sessioncheck.php");  
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,18 +86,57 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li>
-                            <a href="/index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
+                        <?php 
+                            $role = $_SESSION['role'];
+                            if($role=='worker'){
+                                ?>
+
+                                <li>
                             <a href="/pages/viewdata.php"><i class="fa fa-table fa-fw"></i> View Data</a>
                         </li>
                         <li>
-                            <a href="inputdata.php"><i class="fa fa-table fa-fw"></i> Input Data</a>
+                            <a href="/pages/updatedata.php"><i class="fa fa-keyboard-o fa-fw"></i> Update Data</a>
+                        </li>
+                         <li>
+                            <a href="/pages/logtrans.php"><i class="fa fa-keyboard-o fa-fw"></i> Log Transaction</a>
+                        </li>
+                        <?php
+
+
+                            }else{
+
+                                    ?>
+<li>
+                            <a href="/index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                       
+                        <li>
+                            <a href="/pages/viewdata.php"><i class="fa fa-table fa-fw"></i> View Data</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/pages/inputdata.php"><i class="fa fa-keyboard-o fa-fw"></i> Input Data</a>
+                        </li>
+                         <li>
+                            <a href="/pages/updatedata.php"><i class="fa fa-keyboard-o fa-fw"></i> Update Data</a>
+                        </li>
+                        <li>
+                            <a href="/pages/viewbond.php"><i class="fa fa-keyboard-o fa-fw"></i>View Bond</a>
+                        </li>
+                        <li>
+                            <a href="/pages/insertbond.php"><i class="fa fa-keyboard-o fa-fw"></i>Input Bond</a>
                         </li>
                         <li>
                             <a href="/pages/logtrans.php"><i class="fa fa-keyboard-o fa-fw"></i> Log Transaction</a>
                         </li>
+
+
+                                    <?php
+
+
+
+                            }
+                         ?>
                                            
                         
                     </ul>
@@ -127,6 +162,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
@@ -139,15 +175,15 @@
                                         <th>Harga Beli</th>
                                         <th>Qty</th>
                                         <th>Supplier</th>
+                                        <th>Keterangan</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="viewt">
 
                                 <?php  
                                     $result1 = executeQuery("select * from msbarang");
 
-                            
-
+                                    
                                    
 
                                     while($row = mysqli_fetch_array($result1)){
@@ -160,9 +196,50 @@
                                          <td><?php echo $row[3] ?></td> 
                                          <td><?php echo $row[4] ?></td> 
                                          <td><?php echo $row[5] ?></td> 
-                                         <td><?php echo $row[6] ?></td> 
+                                         
+
+                                            <?php
+
+                                            $list=array(
+                                            'X' => 0,
+                                            'L' => 1,
+                                            'M' => 2,
+                                            'N' => 3,
+                                            'O' => 4,
+                                            'P' => 5,
+                                            'Q' => 6,
+                                            'R' => 7,
+                                            'S' => 8,
+                                            'K' => 9
+                                            );
+
+                                             $num=$row[6]; //your value
+                                             $temp='';
+                                             $arr_num=str_split ($num);
+                                            foreach($arr_num as $data)
+                                            {
+                                            $temp.=array_search($data,$list);
+                                            }
+                                            $num=$temp;
+
+                                            $num = str_replace("XXXXXX", "CC", $num);
+                                            $num = str_replace("XXXXX", "BC", $num);
+                                            $num = str_replace("XXXX", "XC", $num);
+                                            $num = str_replace("XXX", "C", $num);
+                                            $num = str_replace("XX", "B", $num);
+
+
+
+                                           
+                                            ?>
+
+                                         <td><?php echo $num ?></td> 
+
+
                                          <td><?php echo $row[7] ?></td>  
-                                         <td><?php echo $row[8] ?></td>  
+                                         <td><?php echo $row[9] ?></td>
+                                         <td><?php echo $row[8] ?></td>
+
                                         
                                     </tr>
                                     <?php
@@ -184,43 +261,14 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-                <div class="col-lg-12">
-                    <button id="newtrans">New Transaction</button>
-                    
-                    <div id="formtrans" class="modal">
-                        
-                        <form id="form_insert_barang" role="form">
-                            <span class="close">&times;</span>
-                            <div class="form-group">
-                                <label>ID Barang</label>
-                                <input class="form-control" placeholder="ID Barang" name="idbarang" type="number">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Quantity</label>
-                                <input class="form-control" placeholder="Quantity" name="qty" type="number">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Harga</label>
-                                <input class="form-control" placeholder="Harga" name="harga" type="number">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Selects</label>
-                                <select class="form-control" name="status">
-                                    <option disabled selected> Status</option>
-                                    <option value="Penjualan">Penjualan</option>
-                                    <option value="Restock">Restock</option>
-                                    <option value="Retur">Retur</option>
-                                </select>
-                            </div>
-                            
-                            <button id="insertbarang" type="submit" class="btn btn-default">Submit</button>
-                            <button type="reset" class="btn btn-default">Reset</button>
-                        </form>
-                    </div>
-                </div>
+               
+
+                <div class="col-md-3 hidden-phone"></div>
+                
+                <div class="col-md-3 hidden-phone"></div>
+            </div>
+
+
             </div>
 
     </div>
@@ -251,26 +299,12 @@
             responsive: true
         });
 
-        $('#insertbarang').on('click',function(){
-            var form = $('#form_insert_barang').serializeArray();
-            form.push({name: "key",value:"insertbarang"});
-            $.ajax({
-                url:"/ajax/ajax.php",
-                type:"POST",
-                data:form,
-                success:function(msg){
-                    console.log(msg);
-                },
-                error:function(msg){
-                    console.log(msg);
-                }
-            });
-        });
     });
     </script>
+
+
 
 </body>
 
 </html>
 
-<?php } ?>

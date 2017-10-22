@@ -1,11 +1,7 @@
 <?php  
     include("mod/connect.php");
-    session_start();
-    if(!isset($_SESSION['username'])){
-        header("Location:/login.php?msg=not logged in");
-    }else{
+    include("mod/sessioncheck.php");  
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,19 +85,57 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li>
-                            <a href="/index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
+                        <?php 
+                            
+                            if($role=='worker'){
+                                ?>
+
+                                <li>
                             <a href="/pages/viewdata.php"><i class="fa fa-table fa-fw"></i> View Data</a>
                         </li>
                         <li>
-                            <a href="inputdata.php"><i class="fa fa-table fa-fw"></i> Input Data</a>
+                            <a href="/pages/updatedata.php"><i class="fa fa-keyboard-o fa-fw"></i> Update Data</a>
+                        </li>
+                         <li>
+                            <a href="/pages/logtrans.php"><i class="fa fa-keyboard-o fa-fw"></i> Log Transaction</a>
+                        </li>
+                        <?php
+
+
+                            }else{
+
+                                    ?>
+<li>
+                            <a href="/index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                       
+                        <li>
+                            <a href="/pages/viewdata.php"><i class="fa fa-table fa-fw"></i> View Data</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/pages/inputdata.php"><i class="fa fa-keyboard-o fa-fw"></i> Input Data</a>
+                        </li>
+                         <li>
+                            <a href="/pages/updatedata.php"><i class="fa fa-keyboard-o fa-fw"></i> Update Data</a>
+                        </li>
+                        <li>
+                            <a href="/pages/viewbond.php"><i class="fa fa-keyboard-o fa-fw"></i>View Bond</a>
+                        </li>
+                        <li>
+                            <a href="/pages/insertbond.php"><i class="fa fa-keyboard-o fa-fw"></i>Input Bond</a>
                         </li>
                         <li>
                             <a href="/pages/logtrans.php"><i class="fa fa-keyboard-o fa-fw"></i> Log Transaction</a>
                         </li>
-                                           
+
+
+                                    <?php
+
+
+
+                            }
+                         ?>            
                         
                     </ul>
                 </div>
@@ -209,12 +243,14 @@
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
             responsive: true
+
         });
-    });
+
+       
+            });
     </script>
 
 </body>
 
 </html>
 
-<?php } ?>

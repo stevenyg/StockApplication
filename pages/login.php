@@ -53,10 +53,10 @@
                          <form action="mod/dologin.php" method="POST" role="form">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
+                                    <input class="form-control" placeholder="Username" name="username" type="text" required autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" required>
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->
